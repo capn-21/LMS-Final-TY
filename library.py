@@ -14,6 +14,7 @@ class LibrarymanagementSystem:
         self.root.geometry("1550x800+0+0")
         pic=PhotoImage(file="lm.png")
         root.iconphoto(False,pic)
+        self.root.configure(background="#27252b")
 
         # =====================Variables=========================================================================
         self.member_var=StringVar()
@@ -36,7 +37,7 @@ class LibrarymanagementSystem:
         self.finallprice=StringVar()
 
         # =======================TitleLabel======================================================================
-        lbltitle=Label(self.root,text="LIBRAYRY MANAGEMENT SYSTEM",bg="#A6B7D7",fg="#27252b",bd=20,relief=FLAT,font=("Agency FB",50,"bold"),padx=2,pady=6)
+        lbltitle=Label(self.root,text="LIBRARY MANAGEMENT SYSTEM",bg="#A6B7D7",fg="#27252b",bd=20,relief=FLAT,font=("Agency FB",50,"bold"),padx=2,pady=6)
         lbltitle.pack(side=TOP,fill=X)
 
         def time(): 
@@ -53,46 +54,46 @@ class LibrarymanagementSystem:
         DataFrame.place(x=0,y=130,width=1530,height=400)
         
         DataFrameLeft=LabelFrame(DataFrame,bd=12,padx=20,relief=FLAT,bg="#A6B7D7",fg="#27252b",
-                                                font=("arial",12,"bold"),text="Library Membership Information")
-        DataFrameLeft.place(x=0,y=5,width=900,height=350)
+                                                font=("Agency FB",20,"bold"),text="Library Membership Information")
+        DataFrameLeft.place(x=0,y=5,width=900,height=400)
 
         DataFrameRight=LabelFrame(DataFrame,bd=12,padx=20,relief=FLAT,bg="#A6B7D7",fg="#27252b",
-                                            font=("arial",12,"bold"),text="Book Details")
-        DataFrameRight.place(x=910,y=5,width=540,height=350)
+                                            font=("Agency FB",20,"bold"),text="Book Details")
+        DataFrameRight.place(x=910,y=5,width=540,height=400)
 
         # ===========Buttonframe================================================================================
-        ButtonFrame=Frame(self.root,bd=20,padx=20,relief=FLAT,bg="#27252b")
-        ButtonFrame.place(x=0,y=530,width=1530,height=70)
+        ButtonFrame=Frame(self.root,bd=20,padx=8,relief=FLAT,bg="#27252b")
+        ButtonFrame.place(x=15,y=530,width=1530,height=90)
 
         # ===================================ButtonFrame=====================================
-        btnAddData=Button(ButtonFrame,command=self.add_data,text="ADD DATA",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnAddData=Button(ButtonFrame,command=self.add_data,text="REGISTER",font=("arial",17,"bold"),width=17,bg="#A6B7D7",fg="#27252b")
         btnAddData.grid(row=0,column=0)
 
-        btnShowData=Button(ButtonFrame,command=self.showData,text="SHOW DATA",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnShowData=Button(ButtonFrame,command=self.showData,text="SHOW DATA",font=("arial",17,"bold"),width=17,bg="#A6B7D7",fg="#27252b")
         btnShowData.grid(row=0,column=1)
 
-        btnUpdate=Button(ButtonFrame,command=self.update_data,text="UPDATE",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnUpdate=Button(ButtonFrame,command=self.update_data,text="UPDATE",font=("arial",17,"bold"),width=16,bg="#A6B7D7",fg="#27252b")
         btnUpdate.grid(row=0,column=2)
 
-        btnDelete=Button(ButtonFrame,command=self.mDelete,text="DELETE",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnDelete=Button(ButtonFrame,command=self.mDelete,text="DELETE",font=("arial",17,"bold"),width=16,bg="#A6B7D7",fg="#27252b")
         btnDelete.grid(row=0,column=3)
 
-        btnReset=Button(ButtonFrame,command=self.reset,text="RESET",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnReset=Button(ButtonFrame,command=self.reset,text="RESET",font=("arial",17,"bold"),width=16,bg="#A6B7D7",fg="#27252b")
         btnReset.grid(row=0,column=4)
 
-        btnExit=Button(ButtonFrame,command=self.iExit,text="EXIT",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
+        btnExit=Button(ButtonFrame,command=self.iExit,text="EXIT",font=("arial",17,"bold"),width=17,bg="#A6B7D7",fg="#27252b")
         btnExit.grid(row=0,column=5)
 
         # =======Framedetails===================================================================================
         FrameDetails=Frame(self.root,bd=20,padx=20,relief=FLAT,bg="#27252b")
-        FrameDetails.place(x=0,y=600,width=1530,height=195)
+        FrameDetails.place(x=0,y=600,width=1920,height=200)
 
         lblMember=Label(DataFrameLeft,font=("arial",12,"bold"),text="Member Type",padx=2,pady=6,bg="#A6B7D7")
         lblMember.grid(row=0,column=0,sticky=W)
 
         comMenber=ttk.Combobox(DataFrameLeft,textvariable=self.member_var,state="readonly",
                                                         font=("arial",12,"bold"),width=27)
-        comMenber['value']=("Admin Staf","Lecturer","Student")
+        comMenber['value']=("Admin Staff","Lecturer","Student")
         comMenber.current(0)
         comMenber.grid(row=0,column=1)
 
@@ -181,7 +182,7 @@ class LibrarymanagementSystem:
         txtActualPrice=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.finallprice,width=29)
         txtActualPrice.grid(row=8,column=3)
 
-        # ===================================DataframeRight====================================
+        # ===================================$DataframeRight====================================
          # ===================================textBox====================================
         self.txtBox=Text(DataFrameRight,font=("arial",12,"bold"),width=32,height=16,padx=2,pady=6)
         self.txtBox.grid(row=0,column=2)

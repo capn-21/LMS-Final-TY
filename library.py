@@ -7,12 +7,13 @@ from PIL import Image,ImageTk
 from time import strftime
 import mysql.connector
 
-class LibraryManagementSystem:
+class LibrarymanagementSystem:
     def __init__(self,root):
         self.root=root
-        self.root.title("Library Management System")
-        self.root.geometry("1920x1080+0+0")
-        self.root.configure(background="#27252b")
+        self.root.title("Library management System")
+        self.root.geometry("1550x800+0+0")
+        pic=PhotoImage(file="lm.png")
+        root.iconphoto(False,pic)
 
         # =====================Variables=========================================================================
         self.member_var=StringVar()
@@ -26,7 +27,7 @@ class LibraryManagementSystem:
         self.mobile_var=StringVar()
         self.bookid_var=StringVar()
         self.booktitle_var=StringVar()
-        self.author_var=StringVar()
+        self.auther_var=StringVar()
         self.dateborrowed_var=StringVar()
         self.datedue_var=StringVar()
         self.daysonbook=StringVar()
@@ -35,13 +36,8 @@ class LibraryManagementSystem:
         self.finallprice=StringVar()
 
         # =======================TitleLabel======================================================================
-        lbltitle=Label(self.root,text="LIBRAYRY MANAGEMENT SYSTEM",bg="#A6B7D7",fg="#27252b",bd=20,relief=FLAT,font=("Agency FB",42,"bold"),padx=2,pady=6)
+        lbltitle=Label(self.root,text="LIBRAYRY MANAGEMENT SYSTEM",bg="#A6B7D7",fg="#27252b",bd=20,relief=FLAT,font=("Agency FB",50,"bold"),padx=2,pady=6)
         lbltitle.pack(side=TOP,fill=X)
-        pic=PhotoImage(file="lm.png")
-        root.iconphoto(False,pic)
-
-
-
 
         def time(): 
             string = strftime('%I:%M:%S %p') 
@@ -49,144 +45,145 @@ class LibraryManagementSystem:
             lbl.after(1000, time) 
         
         lbl = Label(lbltitle, font = ('times new roman',15, 'bold'),background = 'purple',foreground = 'white') 
-        
+        #lbl.place(x=0,y=0,width=150) 
+        time() 
         
         # ======Dataframe======================================================================================
         DataFrame=Frame(self.root,bd=20,padx=20,relief=FLAT,bg="#27252b")
-        DataFrame.place(x=0,y=110,width=1530,height=900)
+        DataFrame.place(x=0,y=130,width=1530,height=400)
         
         DataFrameLeft=LabelFrame(DataFrame,bd=12,padx=20,relief=FLAT,bg="#A6B7D7",fg="#27252b",
-                                                font=("Gill Sans MT",12,"bold"),text="Library Membership Information")
-        DataFrameLeft.place(x=0,y=5,width=900,height=780)
+                                                font=("arial",12,"bold"),text="Library Membership Information")
+        DataFrameLeft.place(x=0,y=5,width=900,height=350)
 
         DataFrameRight=LabelFrame(DataFrame,bd=12,padx=20,relief=FLAT,bg="#A6B7D7",fg="#27252b",
-                                            font=("Gill Sans MT",12,"bold"),text="Book Details")
-        DataFrameRight.place(x=910,y=5,width=550,height=700)
+                                            font=("arial",12,"bold"),text="Book Details")
+        DataFrameRight.place(x=910,y=5,width=540,height=350)
 
         # ===========Buttonframe================================================================================
         ButtonFrame=Frame(self.root,bd=20,padx=20,relief=FLAT,bg="#27252b")
         ButtonFrame.place(x=0,y=530,width=1530,height=70)
 
-        # ===================================ButtonFrame============================================================
-        btnAddData=Button(ButtonFrame,command=self.add_data,text="ADD DATA",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        # ===================================ButtonFrame=====================================
+        btnAddData=Button(ButtonFrame,command=self.add_data,text="ADD DATA",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnAddData.grid(row=0,column=0)
 
-        btnShowData=Button(ButtonFrame,command=self.showData,text="SHOW DATA",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        btnShowData=Button(ButtonFrame,command=self.showData,text="SHOW DATA",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnShowData.grid(row=0,column=1)
 
-        btnUpdate=Button(ButtonFrame,command=self.update_data,text="UPDATE",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        btnUpdate=Button(ButtonFrame,command=self.update_data,text="UPDATE",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnUpdate.grid(row=0,column=2)
 
-        btnDelete=Button(ButtonFrame,command=self.mDelete,text="DELETE",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        btnDelete=Button(ButtonFrame,command=self.mDelete,text="DELETE",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnDelete.grid(row=0,column=3)
 
-        btnReset=Button(ButtonFrame,command=self.reset,text="RESET",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        btnReset=Button(ButtonFrame,command=self.reset,text="RESET",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnReset.grid(row=0,column=4)
 
-        btnExit=Button(ButtonFrame,command=self.iExit,text="EXIT",font=("Gill Sans MT",12,"bold"),width=23,bg="#A6B7D7",fg="white")
+        btnExit=Button(ButtonFrame,command=self.iExit,text="EXIT",font=("arial",12,"bold"),width=23,bg="#A6B7D7",fg="#27252b")
         btnExit.grid(row=0,column=5)
 
         # =======Framedetails===================================================================================
         FrameDetails=Frame(self.root,bd=20,padx=20,relief=FLAT,bg="#27252b")
-        FrameDetails.place(x=0,y=585,width=1530,height=900)
+        FrameDetails.place(x=0,y=600,width=1530,height=195)
 
-        lblMember=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Member Type",padx=2,pady=6,bg="#A6B7D7")
+        lblMember=Label(DataFrameLeft,font=("arial",12,"bold"),text="Member Type",padx=2,pady=6,bg="#A6B7D7")
         lblMember.grid(row=0,column=0,sticky=W)
 
         comMenber=ttk.Combobox(DataFrameLeft,textvariable=self.member_var,state="readonly",
-                                                        font=("Gill Sans MT",12,"bold"),width=27)
+                                                        font=("arial",12,"bold"),width=27)
         comMenber['value']=("Admin Staf","Lecturer","Student")
         comMenber.current(0)
         comMenber.grid(row=0,column=1)
 
-        lblref=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="PRN No:",padx=2,bg="#A6B7D7")
+        lblref=Label(DataFrameLeft,font=("arial",12,"bold"),text="PRN No:",padx=2,bg="#A6B7D7")
         lblref.grid(row=1,column=0,sticky=W)
-        txtref=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.ref_var,width=29)
+        txtref=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.ref_var,width=29)
         txtref.grid(row=1,column=1)
 
-        lblTitle=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="ID No:",padx=2,pady=4,bg="#A6B7D7")
+        lblTitle=Label(DataFrameLeft,font=("arial",12,"bold"),text="ID No:",padx=2,pady=4,bg="#A6B7D7")
         lblTitle.grid(row=2,column=0,sticky=W)
-        txtTitle=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.title_var,width=29)
+        txtTitle=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.title_var,width=29)
         txtTitle.grid(row=2,column=1)
 
-        lblFirstName=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="FirstName:",padx=2,pady=6,bg="#A6B7D7")
+        lblFirstName=Label(DataFrameLeft,font=("arial",12,"bold"),text="FirstName:",padx=2,pady=6,bg="#A6B7D7")
         lblFirstName.grid(row=3,column=0,sticky=W)
-        txtFirstName=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.firstname_var,width=29)
+        txtFirstName=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.firstname_var,width=29)
         txtFirstName.grid(row=3,column=1)
 
-        lblLastName=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Surname:",padx=2,pady=6,bg="#A6B7D7")
+        lblLastName=Label(DataFrameLeft,font=("arial",12,"bold"),text="Surname:",padx=2,pady=6,bg="#A6B7D7")
         lblLastName.grid(row=4,column=0,sticky=W)
-        txtLastName=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.lastname_var,width=29)
+        txtLastName=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.lastname_var,width=29)
         txtLastName.grid(row=4,column=1)
 
-        lblAddress1=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Address1:",padx=2,pady=6,bg="#A6B7D7")
+        lblAddress1=Label(DataFrameLeft,font=("arial",12,"bold"),text="Address1:",padx=2,pady=6,bg="#A6B7D7")
         lblAddress1.grid(row=5,column=0,sticky=W)
-        txtAddress1=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.address1_var,width=29)
+        txtAddress1=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.address1_var,width=29)
         txtAddress1.grid(row=5,column=1)
 
-        lblAddress2=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Address2:",padx=2,pady=6,bg="#A6B7D7")
+        lblAddress2=Label(DataFrameLeft,font=("arial",12,"bold"),text="Address2:",padx=2,pady=6,bg="#A6B7D7")
         lblAddress2.grid(row=6,column=0,sticky=W)
-        txtAddress2=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.address2_var,width=29)
+        txtAddress2=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.address2_var,width=29)
         txtAddress2.grid(row=6,column=1)
 
-        lblPostCode=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text=" Post Code:",padx=2,pady=4,bg="#A6B7D7")
+        lblPostCode=Label(DataFrameLeft,font=("arial",12,"bold"),text=" Post Code:",padx=2,pady=4,bg="#A6B7D7")
         lblPostCode.grid(row=7,column=0,sticky=W)
-        txtPostCode=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.postcode_var,width=29)
+        txtPostCode=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.postcode_var,width=29)
         txtPostCode.grid(row=7,column=1)
 
-        lblMobile=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Mobile Number:",padx=2,pady=6,bg="#A6B7D7")
+        lblMobile=Label(DataFrameLeft,font=("arial",12,"bold"),text="Mobile Number:",padx=2,pady=6,bg="#A6B7D7")
         lblMobile.grid(row=8,column=0,sticky=W)
-        txtMobile=Entry(DataFrameLeft,font=("Gill Sans MT",13,"bold"),textvariable=self.mobile_var,width=29)
+        txtMobile=Entry(DataFrameLeft,font=("arial",13,"bold"),textvariable=self.mobile_var,width=29)
         txtMobile.grid(row=8,column=1)
 
-        lblBookId=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Book Id:",padx=2,bg="#A6B7D7")
+        lblBookId=Label(DataFrameLeft,font=("arial",12,"bold"),text="Book Id:",padx=2,bg="#A6B7D7")
         lblBookId.grid(row=0,column=2,sticky=W)
-        txtBookId=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.bookid_var,width=29)
+        txtBookId=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.bookid_var,width=29)
         txtBookId.grid(row=0,column=3)
 
-        lblBookTitle=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Book Title:",padx=2,pady=6,bg="#A6B7D7")
+        lblBookTitle=Label(DataFrameLeft,font=("arial",12,"bold"),text="Book Title:",padx=2,pady=6,bg="#A6B7D7")
         lblBookTitle.grid(row=1,column=2,sticky=W)
-        txtBookTitle=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.booktitle_var,width=29)
+        txtBookTitle=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.booktitle_var,width=29)
         txtBookTitle.grid(row=1,column=3)
 
-        lblAuthor=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Author Name:",padx=2,pady=6,bg="#A6B7D7")
-        lblAuthor.grid(row=2,column=2,sticky=W)
-        txtAuthor=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.author_var,width=29)
-        txtAuthor.grid(row=2,column=3)
+        lblAuther=Label(DataFrameLeft,font=("arial",12,"bold"),text="Auther Name:",padx=2,pady=6,bg="#A6B7D7")
+        lblAuther.grid(row=2,column=2,sticky=W)
+        txtAuther=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.auther_var,width=29)
+        txtAuther.grid(row=2,column=3)
 
-        lblDateBorrowed=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Date Borrowed:",padx=2,pady=6,bg="#A6B7D7")
+        lblDateBorrowed=Label(DataFrameLeft,font=("arial",12,"bold"),text="Date Borrowed:",padx=2,pady=6,bg="#A6B7D7")
         lblDateBorrowed.grid(row=3,column=2,sticky=W)
-        txtDateBorrowed=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.dateborrowed_var,width=29)
+        txtDateBorrowed=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.dateborrowed_var,width=29)
         txtDateBorrowed.grid(row=3,column=3,sticky=W)
 
-        lblDateDue=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Date Due:",padx=2,pady=6,bg="#A6B7D7")
+        lblDateDue=Label(DataFrameLeft,font=("arial",12,"bold"),text="Date Due:",padx=2,pady=6,bg="#A6B7D7")
         lblDateDue.grid(row=4,column=2,sticky=W)
-        txtDateDue=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.datedue_var,width=29)
+        txtDateDue=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.datedue_var,width=29)
         txtDateDue.grid(row=4,column=3)
 
-        lblDaysOnBook=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Days On Book:",padx=2,pady=6,bg="#A6B7D7")
+        lblDaysOnBook=Label(DataFrameLeft,font=("arial",12,"bold"),text="Days On Book:",padx=2,pady=6,bg="#A6B7D7")
         lblDaysOnBook.grid(row=5,column=2,sticky=W)
-        txtDaysOnBook=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.daysonbook,width=29)
+        txtDaysOnBook=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.daysonbook,width=29)
         txtDaysOnBook.grid(row=5,column=3)
 
-        lblLateReturnFine=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Late Return Fine:",padx=2,pady=6,bg="#A6B7D7")
+        lblLateReturnFine=Label(DataFrameLeft,font=("arial",12,"bold"),text="Late Return Fine:",padx=2,pady=6,bg="#A6B7D7")
         lblLateReturnFine.grid(row=6,column=2,sticky=W)
-        txtLateReturnFine=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.lateratefine_var,width=29)
+        txtLateReturnFine=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.lateratefine_var,width=29)
         txtLateReturnFine.grid(row=6,column=3)
    
-        lblDateOverdate=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Date Over Due:",padx=2,pady=6,bg="#A6B7D7")
+        lblDateOverdate=Label(DataFrameLeft,font=("arial",12,"bold"),text="Date Over Due:",padx=2,pady=6,bg="#A6B7D7")
         lblDateOverdate.grid(row=7,column=2,sticky=W)
-        txtDateOverdate=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.dateoverdue,width=29)
+        txtDateOverdate=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.dateoverdue,width=29)
         txtDateOverdate.grid(row=7,column=3)
    
-        lblActualPrice=Label(DataFrameLeft,font=("Gill Sans MT",12,"bold"),text="Actual Price:",padx=2,pady=6,bg="#A6B7D7")
+        lblActualPrice=Label(DataFrameLeft,font=("arial",12,"bold"),text="Actual Price:",padx=2,pady=6,bg="#A6B7D7")
         lblActualPrice.grid(row=8,column=2,sticky=W)
-        txtActualPrice=Entry(DataFrameLeft,font=("Gill Sans MT",12,"bold"),textvariable=self.finallprice,width=29)
+        txtActualPrice=Entry(DataFrameLeft,font=("arial",12,"bold"),textvariable=self.finallprice,width=29)
         txtActualPrice.grid(row=8,column=3)
 
         # ===================================DataframeRight====================================
          # ===================================textBox====================================
-        self.txtBox=Text(DataFrameRight,font=("Gill Sans MT",12,"bold"),width=32,height=16,padx=2,pady=6)
+        self.txtBox=Text(DataFrameRight,font=("arial",12,"bold"),width=32,height=16,padx=2,pady=6)
         self.txtBox.grid(row=0,column=2)
 
         # ===================================ListBox====================================
@@ -202,7 +199,7 @@ class LibraryManagementSystem:
             if (x=="Head Firt Book"):
                 self.bookid_var.set("BKID5487")
                 self.booktitle_var.set("Python manual")
-                self.author_var.set("Paull berry")
+                self.auther_var.set("Paull berry")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -217,7 +214,7 @@ class LibraryManagementSystem:
             elif (x=="Learn Python The Hard Way"):
                 self.bookid_var.set("BKID8796")
                 self.booktitle_var.set("Basic Of Pythpn")
-                self.author_var.set("ZED A.SHAW")
+                self.auther_var.set("ZED A.SHAW")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -233,7 +230,7 @@ class LibraryManagementSystem:
             elif (x=="Python Programming"):
                 self.bookid_var.set("BKID1245")
                 self.booktitle_var.set("Intro to python Comp Science")
-                self.author_var.set("John Zhelle")
+                self.auther_var.set("John Zhelle")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -249,7 +246,7 @@ class LibraryManagementSystem:
             elif (x=="Secrete Rahshy"):
                 self.bookid_var.set("BKID8796")
                 self.booktitle_var.set("Basic Of Pythpn")
-                self.author_var.set("Ref.Kapil Kamble")
+                self.auther_var.set("Ref.Kapil Kamble")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -265,7 +262,7 @@ class LibraryManagementSystem:
             elif (x=="Python CookBook"):
                 self.bookid_var.set("BKID2546")
                 self.booktitle_var.set("Python Cookbook")
-                self.author_var.set("Brian Jones")
+                self.auther_var.set("Brian Jones")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -279,9 +276,9 @@ class LibraryManagementSystem:
 
             
             elif (x=="Into to Machine Learning"):
-                self.bookid_var.set("BKID8236")
+                self.bookid_var.set("BKID8796")
                 self.booktitle_var.set("Intro to Machine Learning")
-                self.author_var.set("Sarah Guaido")
+                self.auther_var.set("Sarah Guaido")
                 
                 d1=datetime.date.today()
                 d2=datetime.timedelta(days=15)
@@ -291,11 +288,11 @@ class LibraryManagementSystem:
                 self.daysonbook.set("15")
                 self.lateratefine_var.set("Rs.25")
                 self.dateoverdue.set("NO")
-                self.finallprice.set("Rs.1025")
+                self.finallprice.set("Rs.725")
 
 
 
-        bookList=Listbox(DataFrameRight,font=("Gill Sans MT",12,"bold"),width=20,height=16)
+        bookList=Listbox(DataFrameRight,font=("arial",12,"bold"),width=20,height=16)
         bookList.bind('<<ListboxSelect>>',SelectBook)
         bookList.grid(row=0,column=0,padx=4)
         listScrollbar.config(command=bookList.yview)
@@ -310,7 +307,7 @@ class LibraryManagementSystem:
         scroll_x=ttk.Scrollbar(Table_frame,orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(Table_frame,orient=VERTICAL)
         self.library_table=ttk.Treeview(Table_frame,column=("member","ref","title","firtname","lastname","adress1",
-                                            "adress2","postid","mobile","bookid","booktitle","author","dateborrowed",
+                                            "adress2","postid","mobile","bookid","booktitle","auther","dateborrowed",
                                             "datedue","days","latereturnfine","dateoverdue","finalprice")
                                             ,xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM,fill=X)
@@ -330,7 +327,7 @@ class LibraryManagementSystem:
         self.library_table.heading("mobile",text="Mobile Number")
         self.library_table.heading("bookid",text="Book ID")
         self.library_table.heading("booktitle",text="Book Title")
-        self.library_table.heading("author",text="Author")
+        self.library_table.heading("auther",text="Auther")
         self.library_table.heading("dateborrowed",text="Date Of Borrowed")
         self.library_table.heading("datedue",text="Date Due")
         self.library_table.heading("days",text="DaysOnBook")
@@ -351,7 +348,7 @@ class LibraryManagementSystem:
         self.library_table.column("mobile",width=100)
         self.library_table.column("bookid",width=100)
         self.library_table.column("booktitle",width=100)
-        self.library_table.column("author",width=100)
+        self.library_table.column("auther",width=100)
         self.library_table.column("dateborrowed",width=100)
         self.library_table.column("datedue",width=100)
         self.library_table.column("days",width=100)
@@ -388,7 +385,7 @@ class LibraryManagementSystem:
                                                                                 self.mobile_var.get(),
                                                                                 self.bookid_var.get(),
                                                                                 self.booktitle_var.get(),
-                                                                                self.author_var.get(),
+                                                                                self.auther_var.get(),
                                                                                 self.dateborrowed_var.get(),
                                                                                 self.datedue_var.get(),
                                                                                 self.daysonbook.get(),
@@ -411,7 +408,7 @@ class LibraryManagementSystem:
         else:
             conn=mysql.connector.connect(host='localhost',username='root',password='password',database='management')
             my_cursor=conn.cursor()
-            my_cursor.execute("update library set Member_type=%s,ID_No=%s,FirstName=%s,LastName=%s,Address1=%s,Address2=%s,PostCode=%s,Mobile=%s,Bookid=%s,Booktitle=%s,Author=%s,DateBorrowed=%s,DateDue=%s,DaysOfBook=%s,LateReturnFine=%s,DateOverDue=%s,FinalPrice=%s where PRN_No=%s",(
+            my_cursor.execute("update library set Member_type=%s,ID_No=%s,FirstName=%s,LastName=%s,Address1=%s,Address2=%s,PostCode=%s,Mobile=%s,Bookid=%s,Booktitle=%s,Auther=%s,DateBorrowed=%s,DateDue=%s,DaysOfBook=%s,LateReturnFine=%s,DateOverDue=%s,FinalPrice=%s where PRN_No=%s",(
                                                                                                                                                                                                                                                                                             self.member_var.get(),                                                                              
                                                                                                                                                                                                                                                                                             self.title_var.get(),
                                                                                                                                                                                                                                                                                             self.firstname_var.get(),
@@ -422,7 +419,7 @@ class LibraryManagementSystem:
                                                                                                                                                                                                                                                                                             self.mobile_var.get(),
                                                                                                                                                                                                                                                                                             self.bookid_var.get(),
                                                                                                                                                                                                                                                                                             self.booktitle_var.get(),
-                                                                                                                                                                                                                                                                                            self.author_var.get(),
+                                                                                                                                                                                                                                                                                            self.auther_var.get(),
                                                                                                                                                                                                                                                                                             self.dateborrowed_var.get(),
                                                                                                                                                                                                                                                                                             self.datedue_var.get(),
                                                                                                                                                                                                                                                                                             self.daysonbook.get(),
@@ -469,7 +466,7 @@ class LibraryManagementSystem:
         self.mobile_var.set(row[8]),
         self.bookid_var.set(row[9]),
         self.booktitle_var.set(row[10]),
-        self.author_var.set(row[11]),
+        self.auther_var.set(row[11]),
         self.dateborrowed_var.set(row[12]),
         self.datedue_var.set(row[13]),
         self.daysonbook.set(row[14]),
@@ -496,7 +493,7 @@ class LibraryManagementSystem:
 
 
     def iExit(self):
-        iExit=tkinter.messagebox.askyesno("Library Management System","Confirm if you want to exit")
+        iExit=tkinter.messagebox.askyesno("Library management System","Confirm if you want to exit")
         if iExit>0:
             root.destroy()
             return
@@ -513,7 +510,7 @@ class LibraryManagementSystem:
         self.mobile_var.set(""),
         self.bookid_var.set(""),
         self.booktitle_var.set(""),
-        self.author_var.set(""),
+        self.auther_var.set(""),
         self.dateborrowed_var.set(""),
         self.datedue_var.set(""),
         self.daysonbook.set(""),
@@ -534,7 +531,7 @@ class LibraryManagementSystem:
         self.txtBox.insert(END,"Mobile No:\t\t"+ self.mobile_var.get() + "\n")   
         self.txtBox.insert(END,"Book ID:\t\t"+ self.bookid_var.get() + "\n")   
         self.txtBox.insert(END,"Book Title:\t\t"+ self.booktitle_var.get() + "\n")   
-        self.txtBox.insert(END,"Author:\t\t"+ self.author_var.get() + "\n")   
+        self.txtBox.insert(END,"Auther:\t\t"+ self.auther_var.get() + "\n")   
         self.txtBox.insert(END,"DateBorrowed:\t\t"+ self.dateborrowed_var.get() + "\n")   
         self.txtBox.insert(END,"DateDue:\t\t"+ self.datedue_var.get() + "\n")   
         self.txtBox.insert(END,"DaysOnBook:\t\t"+ self.daysonbook.get() + "\n")   
@@ -547,5 +544,5 @@ class LibraryManagementSystem:
 
 if __name__ == "__main__":
     root=Tk()
-    obj=LibraryManagementSystem(root)
+    obj=LibrarymanagementSystem(root)
     root.mainloop()
